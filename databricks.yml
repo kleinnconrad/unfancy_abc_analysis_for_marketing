@@ -6,41 +6,37 @@ resources:
     abc_pipeline_job:
       name: "ABC Marketing Pipeline"
       
-      # Define the Serverless Environment and provide its version
       environments:
         - environment_key: serverless_env
           spec:
-            client_version: "1"
-            # Optional: You can also define pip dependencies here if needed later
-            # dependencies:
-            #   - "pandas==2.1.4"
+            version: "1" # Changed from client_version to version
             
       tasks:
         - task_key: generate_mock_data
           environment_key: serverless_env
           spark_python_task:
-            python_file: 00_generate_mock_data.py
+            python_file: src/00_generate_mock_data.py # Ensure this file is in the root folder!
 
         - task_key: abc_analysis
           depends_on:
             - task_key: generate_mock_data
           environment_key: serverless_env
           spark_python_task:
-            python_file: 01_abc_analysis.py
+            python_file: src/01_abc_analysis.py
 
         - task_key: characterization
           depends_on:
             - task_key: abc_analysis
           environment_key: serverless_env
           spark_python_task:
-            python_file: 02_characterization.py
+            python_file: src/02_characterization.py
 
         - task_key: prediction
           depends_on:
             - task_key: characterization
           environment_key: serverless_env
           spark_python_task:
-            python_file: 03_prediction.py
+            python_file: src/03_prediction.py
 
 targets:
   prod:
