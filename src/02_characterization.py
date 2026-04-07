@@ -27,6 +27,6 @@ def extract_thresholds(input_path, output_path):
 
 if __name__ == "__main__":
     extract_thresholds(
-        input_path='data/labeled_historical_customers.csv',
-        output_path='data/magic_thresholds.json'
+        input_path='/Volumes/workspace/default/data/labeled_historical_customers.csv',
+        output_path='/Volumes/workspace/default/data/magic_thresholds.json'
     )
