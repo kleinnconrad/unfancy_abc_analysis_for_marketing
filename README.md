@@ -1,6 +1,6 @@
 # Unfancified Marketing Analytics Pipeline
 
-[![Deploy Databricks Asset Bundle](https://github.com/YOUR_USERNAME/YOUR_REPO/actions/workflows/deploy.yml/badge.svg)](https://github.com/YOUR_USERNAME/YOUR_REPO/actions/workflows/deploy.yml)
+[![Deploy Databricks Asset Bundle](https://github.com/kleinnconrad/unfancy_abc_analysis_for_marketing/actions/workflows/deploy.yml/badge.svg)](https://github.com/kleinnconrad/unfancy_abc_analysis_for_marketing/actions/workflows/deploy.yml)
 
 A lightweight, transparent Databricks data pipeline that segments customers and predicts VIP potential without relying on black-box machine learning models. 
 
