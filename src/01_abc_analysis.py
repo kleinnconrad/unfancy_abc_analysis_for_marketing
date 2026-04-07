@@ -19,6 +19,6 @@ def run_abc_analysis(input_path, output_path):
 
 if __name__ == "__main__":
     run_abc_analysis(
-        input_path='data/raw_historical_customers.csv', 
-        output_path='data/labeled_historical_customers.csv'
+        input_path='/Volumes/workspace/default/data/raw_historical_customers.csv', 
+        output_path='/Volumes/workspace/default/data/labeled_historical_customers.csv'
     )
