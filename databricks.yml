@@ -9,7 +9,7 @@ resources:
       environments:
         - environment_key: serverless_env
           spec:
-            client_version: "1"
+            environment_version: "1" # This is the exact, correct key!
             
       tasks:
         - task_key: generate_mock_data
