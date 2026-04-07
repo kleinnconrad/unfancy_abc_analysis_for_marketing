@@ -19,28 +19,28 @@ resources:
         - task_key: generate_mock_data
           job_cluster_key: shared_job_cluster
           spark_python_task:
-            python_file: 00_generate_mock_data.py
+            python_file: src/00_generate_mock_data.py
 
         - task_key: abc_analysis
           depends_on:
             - task_key: generate_mock_data
           job_cluster_key: shared_job_cluster
           spark_python_task:
-            python_file: 01_abc_analysis.py
+            python_file: src/01_abc_analysis.py
 
         - task_key: characterization
           depends_on:
             - task_key: abc_analysis
           job_cluster_key: shared_job_cluster
           spark_python_task:
-            python_file: 02_characterization.py
+            python_file: src/02_characterization.py
 
         - task_key: prediction
           depends_on:
             - task_key: characterization
           job_cluster_key: shared_job_cluster
           spark_python_task:
-            python_file: 03_prediction.py
+            python_file: src/03_prediction.py
 
 # Define the target deployment workspace
 targets:
