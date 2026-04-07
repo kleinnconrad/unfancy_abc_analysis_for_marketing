@@ -21,11 +21,17 @@ def create_mockup_data(n_customers=1000):
 
 if __name__ == "__main__":
     print("Task: Generating raw mock data...")
-    os.makedirs('data', exist_ok=True)
+    
+    # Define the persistent Databricks Volume path
+    volume_dir = '/Volumes/workspace/default/data'
+    os.makedirs(volume_dir, exist_ok=True)
+    
+    historical_path = f'{volume_dir}/raw_historical_customers.csv'
+    new_cohort_path = f'{volume_dir}/raw_new_cohort.csv'
     
     # 1. Historical data for training/characterization
     historical_df = create_mockup_data(1000)
-    historical_df.to_csv('data/raw_historical_customers.csv', index=False)
+    historical_df.to_csv(historical_path, index=False)
     
     # 2. New cohort data for prediction
     new_cohort_df = pd.DataFrame({
@@ -33,6 +39,6 @@ if __name__ == "__main__":
         'first_14_days_content_consumed': [3, 45, 12, 60, 2, 38, 15, 0, 85, 8],
         'first_14_days_login_days': [1, 9, 4, 12, 1, 8, 3, 0, 14, 2]
     })
-    new_cohort_df.to_csv('data/raw_new_cohort.csv', index=False)
+    new_cohort_df.to_csv(new_cohort_path, index=False)
     
-    print("Output saved to data/raw_historical_customers.csv and data/raw_new_cohort.csv")
+    print(f"Output saved to:\n- {historical_path}\n- {new_cohort_path}")
