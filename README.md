@@ -60,7 +60,7 @@ This project uses **Databricks Asset Bundles (DABs)** to manage infrastructure a
 1. A Databricks Workspace with Unity Catalog enabled.
 2. A Unity Catalog Volume created at `/Volumes/workspace/default/data/`.
 3. A Databricks Personal Access Token (PAT) or Service Principal token saved as a GitHub Action Secret named `DATABRICKS_TOKEN`.
-4. A Databricks Volume created ```sql CREATE VOLUME IF NOT EXISTS workspace.default.data;```
+4. A Databricks Volume created ```CREATE VOLUME IF NOT EXISTS workspace.default.data;```
 
 ## Why This Matters
 
