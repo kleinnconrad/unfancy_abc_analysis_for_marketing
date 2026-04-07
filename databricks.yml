@@ -6,37 +6,31 @@ resources:
     abc_pipeline_job:
       name: "ABC Marketing Pipeline"
       
-      environments:
-        - environment_key: serverless_env
-          spec:
-            environment_version: "1" # This is the exact, correct key!
+      # Notice we completely deleted the 'environments' block.
+      # Databricks defaults to Serverless for notebook_tasks automatically.
             
       tasks:
         - task_key: generate_mock_data
-          environment_key: serverless_env
-          spark_python_task:
-            python_file: src/00_generate_mock_data.py
+          notebook_task:
+            notebook_path: src/00_generate_mock_data.py 
 
         - task_key: abc_analysis
           depends_on:
             - task_key: generate_mock_data
-          environment_key: serverless_env
-          spark_python_task:
-            python_file: src/01_abc_analysis.py
+          notebook_task:
+            notebook_path: src/01_abc_analysis.py
 
         - task_key: characterization
           depends_on:
             - task_key: abc_analysis
-          environment_key: serverless_env
-          spark_python_task:
-            python_file: src/02_characterization.py
+          notebook_task:
+            notebook_path: src/02_characterization.py
 
         - task_key: prediction
           depends_on:
             - task_key: characterization
-          environment_key: serverless_env
-          spark_python_task:
-            python_file: src/03_prediction.py
+          notebook_task:
+            notebook_path: src/03_prediction.py
 
 targets:
   prod:
