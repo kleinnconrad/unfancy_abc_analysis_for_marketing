@@ -1,48 +1,42 @@
 bundle:
   name: abc-marketing-pipeline
 
-# Define the Databricks resources to be deployed
 resources:
   jobs:
     abc_pipeline_job:
       name: "ABC Marketing Pipeline"
-      # Define a single job cluster so all tasks share the same compute environment
-      job_clusters:
-        - job_cluster_key: shared_job_cluster
-          new_cluster:
-            spark_version: "13.3.x-scala2.12"
-            node_type_id: "i3.xlarge" 
-            num_workers: 1
+      
+      # 1. Replace 'job_clusters' with an environment for Serverless
+      environments:
+        - environment_key: serverless_env
             
-      # Define the DAG tasks and their dependencies
       tasks:
         - task_key: generate_mock_data
-          job_cluster_key: shared_job_cluster
+          environment_key: serverless_env # 2. Assign the environment to the task
           spark_python_task:
             python_file: src/00_generate_mock_data.py
 
         - task_key: abc_analysis
           depends_on:
             - task_key: generate_mock_data
-          job_cluster_key: shared_job_cluster
+          environment_key: serverless_env
           spark_python_task:
             python_file: src/01_abc_analysis.py
 
         - task_key: characterization
           depends_on:
             - task_key: abc_analysis
-          job_cluster_key: shared_job_cluster
+          environment_key: serverless_env
           spark_python_task:
             python_file: src/02_characterization.py
 
         - task_key: prediction
           depends_on:
             - task_key: characterization
-          job_cluster_key: shared_job_cluster
+          environment_key: serverless_env
           spark_python_task:
             python_file: src/03_prediction.py
 
-# Define the target deployment workspace
 targets:
   prod:
     workspace:
