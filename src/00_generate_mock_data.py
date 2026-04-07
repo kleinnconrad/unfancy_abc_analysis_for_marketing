@@ -36,7 +36,7 @@ if __name__ == "__main__":
     # 2. New cohort data for prediction
     new_cohort_df = pd.DataFrame({
         'customer_id': range(5001, 5011),
-        'first_14_days_content_consumed': [3, 45, 12, 60, 2, 38, 15, 0, 85, 8],
+        'first_14_days_content_consumed': [2, 45, 12, 60, 2, 38, 15, 0, 85, 8],
         'first_14_days_login_days': [1, 9, 4, 12, 1, 8, 3, 0, 14, 2]
     })
     new_cohort_df.to_csv(new_cohort_path, index=False)
