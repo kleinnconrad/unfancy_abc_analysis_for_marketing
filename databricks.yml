@@ -32,6 +32,15 @@ resources:
           notebook_task:
             notebook_path: src/03_prediction.py
 
+        - task_key: crash_logger_execution
+          depends_on:
+            - task_key: prediction
+          python_wheel_task:
+            package_name: crash_logger
+            entry_point: main
+          libraries:
+            - whl: /Volumes/workspace/default/data/crash_logger-0.1.0-py3-none-any.whl
+
 targets:
   prod:
     workspace:
