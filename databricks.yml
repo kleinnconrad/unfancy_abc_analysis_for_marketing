@@ -10,7 +10,7 @@ resources:
       environments:
         - environment_key: wheel_env
           spec:
-            version: "2"
+            client: "2"
             dependencies:
               - /Volumes/workspace/default/data/crash_logger-0.1.0-py3-none-any.whl
 
@@ -42,8 +42,9 @@ resources:
           depends_on:
             - task_key: prediction
           environment_key: wheel_env 
-          notebook_task:
-            notebook_path: src/04_execute_logger.py 
+          python_wheel_task:
+            package_name: crash_logger
+            entry_point: main
 
 targets:
   prod:
