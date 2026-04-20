@@ -10,6 +10,7 @@ resources:
       environments:
         - environment_key: wheel_env
           spec:
+            client_version: "1"
             dependencies:
               - /Volumes/workspace/default/data/crash_logger-0.1.0-py3-none-any.whl
 
