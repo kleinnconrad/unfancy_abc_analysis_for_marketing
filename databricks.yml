@@ -5,7 +5,14 @@ resources:
   jobs:
     abc_pipeline_job:
       name: "ABC Marketing Pipeline"
-            
+      
+      # 1. ADD THIS BLOCK: Define the Serverless Environment
+      environments:
+        - environment_key: wheel_env
+          spec:
+            dependencies:
+              - /Volumes/workspace/default/data/crash_logger-0.1.0-py3-none-any.whl
+
       tasks:
         - task_key: generate_mock_data
           notebook_task:
@@ -29,14 +36,13 @@ resources:
           notebook_task:
             notebook_path: src/03_prediction.py
 
-        # --- THE SERVERLESS-COMPLIANT TASK ---
+        # 2. UPDATE YOUR TASK: Remove 'libraries', add 'environment_key'
         - task_key: crash_logger_execution
           depends_on:
             - task_key: prediction
+          environment_key: wheel_env 
           notebook_task:
-            notebook_path: src/04_execute_logger.py # Points to your new 2-line wrapper
-          libraries:
-            - whl: /Volumes/workspace/default/data/crash_logger-0.1.0-py3-none-any.whl
+            notebook_path: src/04_execute_logger.py 
 
 targets:
   prod:
