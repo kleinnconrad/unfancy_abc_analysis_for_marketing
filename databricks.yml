@@ -6,7 +6,6 @@ resources:
     abc_pipeline_job:
       name: "ABC Marketing Pipeline"
       
-      # 1. ADD THIS BLOCK: Define the Serverless Environment
       environments:
         - environment_key: wheel_env
           spec:
@@ -36,8 +35,7 @@ resources:
             - task_key: characterization
           notebook_task:
             notebook_path: src/03_prediction.py
-
-        # 2. UPDATE YOUR TASK: Remove 'libraries', add 'environment_key'
+            
         - task_key: crash_logger_execution
           depends_on:
             - task_key: prediction
